@@ -1,6 +1,6 @@
 def findZigZagSequence(a, n):
     a.sort()
-    mid = int((n + 1)/2) - 1
+    mid = int((n - 1)/2) - 1 #change the symbol to - so its centered correctly
     a[mid], a[n-1] = a[n-1], a[mid]
     # this do the following
     # sort => 1 2 3 4 5 6 7
@@ -28,3 +28,5 @@ for cs in range (test_cases):
     n = int(input())
     a = list(map(int, input().split()))
     findZigZagSequence(a, n)
+
+
