@@ -5,6 +5,7 @@ import os
 import random
 import re
 import sys
+import heapq
 
 #
 # Complete the 'cookies' function below.
@@ -84,6 +85,33 @@ def cookies(k, A):
         # Increment the operation count
         num_operations += 1
 
+    return num_operations
+
+
+def cookies(k, A):
+    # Convert the list of sweetness values into a heap.
+    heapq.heapify(A)
+    num_operations = 0
+    
+    # Continue until the smallest element meets the sweetness requirement.
+    while A[0] < k:
+        # If we cannot combine further, return -1.
+        if len(A) < 2:
+            return -1
+        
+        # Remove the two smallest elements.
+        least_sweet = heapq.heappop(A)
+        second_least_sweet = heapq.heappop(A)
+        
+        # Combine them into a new cookie.
+        new_cookie = least_sweet + 2 * second_least_sweet
+        
+        # Add the new cookie back to the heap.
+        heapq.heappush(A, new_cookie)
+        
+        # Increment the count of operations.
+        num_operations += 1
+    
     return num_operations
 
 if __name__ == '__main__':
