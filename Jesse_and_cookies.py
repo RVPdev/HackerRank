@@ -60,6 +60,32 @@ def cookies(k, A):
     # Write your code here
     
 
+
+def cookies(k, A):
+    num_operations = 0
+    A.sort()  # Initially sort the array
+
+    while A[0] < k:
+        # Check if it's possible to perform an operation
+        if len(A) < 2:
+            return -1  # Not enough cookies to perform an operation
+
+        # Perform the combine operation
+        least_sweet = A.pop(0)  # Remove the first element, the smallest
+        second_least_sweet = A.pop(0)  # Remove the new first element, the second smallest
+
+        # Create a new cookie and append it
+        new_cookie = least_sweet + 2 * second_least_sweet
+        A.append(new_cookie)
+
+        # Sort the list again to maintain order
+        A.sort()
+
+        # Increment the operation count
+        num_operations += 1
+
+    return num_operations
+
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
 
